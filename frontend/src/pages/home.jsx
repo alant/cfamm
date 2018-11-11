@@ -226,9 +226,6 @@ class Home extends Component {
 
     return (
       <div className={classes.root}>
-        {noteCards}
-        <Divider />
-        {noteBalaneCards}
         <Grid container spacing={24}>
           <Grid item xs={8}>
             <Typography variant="title" gutterBottom>

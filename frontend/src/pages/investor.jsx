@@ -164,10 +164,10 @@ class Index extends Component {
             {user}
           </Typography>
           <Typography style={{fontSize:12}} color="textSecondary" gutterBottom>
-            {parseFloat(profit  * this.state.total_dividents / this.state.total_profit)}
+            Dividend: {parseFloat(profit  * this.state.total_dividents / this.state.total_profit)}
           </Typography>
           <Typography component="pre">
-            {profit}
+            Already Staked: {profit}
           </Typography>
 
         </CardContent>
@@ -187,7 +187,7 @@ class Index extends Component {
 
           </Typography>
           <Typography component="pre">
-            {profit}
+            Current Balance: {profit}
           </Typography>
         </CardContent>
       </Card>
@@ -200,8 +200,10 @@ class Index extends Component {
 
     return (
       <div>
+        <h3>Staked token</h3>
         {noteCards}
         <Divider />
+        <h3>Account balance</h3>
         {noteBalaneCards}
         <Paper className={classes.paper}>
           <form onSubmit={this.handleFormEvent}>
