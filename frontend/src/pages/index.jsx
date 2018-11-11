@@ -53,13 +53,13 @@ class Index extends Component {
       </Button>
     ));
 
-    const VoteBtn =  withRouter(({ history }) => (
-      <Button color="inherit"
-        onClick={() => { history.push('/vote') }}
-      >
-        Vote
-      </Button>
-    ));
+    // const VoteBtn =  withRouter(({ history }) => (
+    //   <Button color="inherit"
+    //     onClick={() => { history.push('/vote') }}
+    //   >
+    //     Vote
+    //   </Button>
+    // ));
 
     const TradeBtn =  withRouter(({ history }) => (
       <Button color="inherit"
