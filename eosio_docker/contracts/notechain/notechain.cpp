@@ -29,6 +29,7 @@ CONTRACT notechain : public eosio::contract {
       uint64_t      prim_key;  // primary key
       name          user;      // account name for the user
       std::string   note;      // the note message
+      uint64_t      dividend;
       uint64_t      timestamp; // the store the last update block time
 
       // primary key
@@ -39,7 +40,7 @@ CONTRACT notechain : public eosio::contract {
     };
 
     // create a multi-index table and support secondary key
-    typedef eosio::multi_index< name("notestruct"), notestruct,
+    typedef eosio::multi_index< name("notestruct1"), notestruct,
       indexed_by< name("getbyuser"), const_mem_fun<notestruct, uint64_t, &notestruct::get_by_user> >
       > note_table;
 
@@ -64,6 +65,7 @@ CONTRACT notechain : public eosio::contract {
           new_user.prim_key    = _notes.available_primary_key();
           new_user.user        = user;
           new_user.note        = note;
+          new_user.dividend    = 1;
           new_user.timestamp   = now();
         });
       } else {
@@ -73,6 +75,7 @@ CONTRACT notechain : public eosio::contract {
         // update existing note
         _notes.modify( note_entry, _self, [&]( auto& modified_user ) {
           modified_user.note      = note;
+          modified_user.dividend += 1;
           modified_user.timestamp = now();
         });
       }
