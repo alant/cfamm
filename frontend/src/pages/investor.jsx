@@ -4,12 +4,13 @@ import { TextDecoder, TextEncoder } from 'text-encoding';
 
 // material-ui dependencies
 import { withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
-import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
+import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
+import Divider from '@material-ui/core/Divider';
 
 // eosio endpoint
 const endpoint = "http://localhost:8888";
@@ -25,12 +26,8 @@ const accounts = [
   {"name":"useraaaaaaaf", "privateKey":"5KaqYiQzKsXXXxVvrG8Q3ECZdQAj2hNcvCgGEubRvvq7CU3LySK", "publicKey":"EOS5btzHW33f9zbhkwjJTYsoyRzXUNstx1Da9X2nTzk8BQztxoP3H"},
   {"name":"useraaaaaaag", "privateKey":"5KFyaxQW8L6uXFB6wSgC44EsAbzC7ideyhhQ68tiYfdKQp69xKo", "publicKey":"EOS8Du668rSVDE3KkmhwKkmAyxdBd73B51FKE7SjkKe5YERBULMrw"}
 ];
-
 // set up styling classes using material-ui "withStyles"
 const styles = theme => ({
-  grow: {
-    flexGrow: 1,
-  },
   card: {
     margin: 20,
   },
@@ -50,16 +47,21 @@ const styles = theme => ({
   },
 });
 
-class Investor extends Component {
+// Index component
+class Index extends Component {
+
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
-      noteTable: [] // to store the table rows from smart contract
+      noteTable: [], // to store the table rows from smart contract
+      noteBalance: [], //Original balance
+      total_dividents: 1, // total dividents
+      total_profit: 0
     };
     this.handleFormEvent = this.handleFormEvent.bind(this);
   }
 
-    // generic function to handle form events (e.g. "submit" / "reset")
+  // generic function to handle form events (e.g. "submit" / "reset")
   // push transactions to the blockchain by using eosjs
   async handleFormEvent(event) {
     // stop default behaviour
@@ -77,10 +79,10 @@ class Investor extends Component {
     // define actionName and action according to event type
     switch (event.type) {
       case "submit":
-        actionName = "update";
+        actionName = "vote";
         actionData = {
           user: account,
-          note: note,
+          balance: parseInt(note, 10),
         };
         break;
       default:
@@ -125,9 +127,25 @@ class Investor extends Component {
       "json": true,
       "code": "notechainacc",   // contract who owns the table
       "scope": "notechainacc",  // scope of the table
-      "table": "notestruct1",    // name of the table as specified by the contract abi
+      "table": "tokenmaker",    // name of the table as specified by the contract abi
       "limit": 100,
-    }).then(result => this.setState({ noteTable: result.rows }));
+    }).then(result => {
+      this.setState({ noteTable: result.rows });
+      let total_profit = 0
+      result.rows.map((row, i) => total_profit += row.profit);
+      this.setState({total_profit: total_profit});
+      console.log("total_profit", total_profit);
+    });
+
+    rpc.get_table_rows({
+      "json": true,
+      "code": "notechainacc",   // contract who owns the table
+      "scope": "notechainacc",  // scope of the table
+      "table": "tokenbalance",    // name of the table as specified by the contract abi
+      "limit": 100,
+    }).then(result => this.setState({ noteBalance: result.rows }));
+
+
   }
 
   componentDidMount() {
@@ -135,34 +153,56 @@ class Investor extends Component {
   }
 
   render() {
-    const { noteTable } = this.state;
+    const { noteTable, noteBalance } = this.state;
     const { classes } = this.props;
 
     // generate each note as a card
-    const generateCard = (key, timestamp, user, note, dividend) => (
+    const generateCard = (key, user, profit) => (
       <Card className={classes.card} key={key}>
         <CardContent>
           <Typography variant="headline" component="h2">
             {user}
           </Typography>
           <Typography style={{fontSize:12}} color="textSecondary" gutterBottom>
-            {new Date(timestamp*1000).toString()}
+            {parseFloat(profit  * this.state.total_dividents / this.state.total_profit)}
           </Typography>
           <Typography component="pre">
-            {note}
+            {profit}
+          </Typography>
+
+        </CardContent>
+      </Card>
+    );
+    let noteCards = noteTable.map((row, i) => {
+      return generateCard(i, row.user, row.profit);
+    });
+
+    const generateBalanceCard = (key, user, profit) => (
+      <Card className={classes.card} key={key}>
+        <CardContent>
+          <Typography variant="headline" component="h2">
+            {user}
+          </Typography>
+          <Typography style={{fontSize:12}} color="textSecondary" gutterBottom>
+
           </Typography>
           <Typography component="pre">
-            {dividend}
+            {profit}
           </Typography>
         </CardContent>
       </Card>
     );
-    let noteCards = noteTable.map((row, i) =>
-      generateCard(i, row.timestamp, row.user, row.note, row.dividend));
-  
+
+
+
+    let noteBalaneCards = noteBalance.map((row, i) => generateBalanceCard(i, row.user, row.balance));
+
+
     return (
       <div>
         {noteCards}
+        <Divider />
+        {noteBalaneCards}
         <Paper className={classes.paper}>
           <form onSubmit={this.handleFormEvent}>
             <TextField
@@ -182,7 +222,7 @@ class Investor extends Component {
             <TextField
               name="note"
               autoComplete="off"
-              label="Note (Optional)"
+              label="Stake count"
               margin="normal"
               multiline
               rows="10"
@@ -193,7 +233,7 @@ class Investor extends Component {
               color="primary"
               className={classes.formButton}
               type="submit">
-              Add / Update note
+              Stake
             </Button>
           </form>
         </Paper>
@@ -203,8 +243,9 @@ class Investor extends Component {
           accounts = { JSON.stringify(accounts, null, 2) }
         </pre>
       </div>
-    )
+    );
   }
+
 }
 
-export default withStyles(styles)(Investor);
+export default withStyles(styles)(Index);

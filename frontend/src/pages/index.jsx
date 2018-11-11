@@ -13,7 +13,7 @@ import { withRouter } from 'react-router-dom';
 import Home from './home';
 import Investor from './investor';
 import About from './about';
-
+import Login from './login';
 
 // set up styling classes using material-ui "withStyles"
 const styles = theme => ({
@@ -40,7 +40,7 @@ class Index extends Component {
       <Button color="inherit" 
         onClick={() => { history.push('/investor') }}
       >
-        Investor
+        Staker
       </Button>
     ));
 
@@ -49,6 +49,14 @@ class Index extends Component {
         onClick={() => { history.push('/about') }}
       >
         About
+      </Button>
+    ));
+
+    const LoginBtn =  withRouter(({ history }) => (
+      <Button color="inherit" 
+        onClick={() => { history.push('/login') }}
+      >
+        Login
       </Button>
     ));
 
@@ -64,11 +72,13 @@ class Index extends Component {
               <InvestorBtn />
               <Button color="inherit">Deposit</Button>
               <AboutBtn />
+              <LoginBtn />
             </Toolbar>
           </AppBar>
           <Route path="/" exact component={Home} />
           <Route path="/investor/" component={Investor} />
           <Route path="/about/" component={About} />
+          <Route path="/login/" component={Login} />
         </div>
       </Router>
     );
