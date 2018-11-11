@@ -70,7 +70,7 @@ class Index extends Component {
               </Typography>
               <HomeBtn />
               <Button color="inherit">Deposit</Button>
-              <VoteBtn />
+              {/* <VoteBtn /> */}
               <TradeBtn />
               <InvestorBtn />
             </Toolbar>
