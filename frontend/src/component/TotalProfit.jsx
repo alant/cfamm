@@ -10,7 +10,7 @@ function Chart(props) {
               zoomType: 'x'
           },
           title: {
-              text: 'Total Profit'
+              text: 'User Total Profit'
           },
           subtitle: {
               text: document.ontouchstart === undefined ?
