@@ -8,6 +8,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
 
 const styles = theme => ({
   root: {
@@ -44,11 +45,9 @@ class Trade extends Component {
           <Table className={classes.table}>
             <TableHead>
               <TableRow>
-                <TableCell>Dessert (100g serving)</TableCell>
-                <TableCell numeric>Calories</TableCell>
-                <TableCell numeric>Fat (g)</TableCell>
-                <TableCell numeric>Carbs (g)</TableCell>
-                <TableCell numeric>Protein (g)</TableCell>
+                <TableCell>Contract Name</TableCell>
+                <TableCell numeric>EOS Price</TableCell>
+                <TableCell numeric>USD Pirce</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -60,8 +59,17 @@ class Trade extends Component {
                     </TableCell>
                     <TableCell numeric>{row.calories}</TableCell>
                     <TableCell numeric>{row.fat}</TableCell>
-                    <TableCell numeric>{row.carbs}</TableCell>
-                    <TableCell numeric>{row.protein}</TableCell>
+                    <TableCell>
+                      <Button variant="contained" color="primary">
+                        Buy
+                      </Button>
+                    </TableCell>
+                    <TableCell>
+                      <Button variant="contained" color="primary">
+                        Sell
+                      </Button>
+                    </TableCell>
+ 
                   </TableRow>
                 );
               })}
