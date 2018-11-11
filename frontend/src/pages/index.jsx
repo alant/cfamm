@@ -12,8 +12,8 @@ import { withRouter } from 'react-router-dom';
 
 import Home from './home';
 import Investor from './investor';
-import About from './about';
-import Login from './login';
+import Vote from './vote';
+import Trade from './trade';
 
 // set up styling classes using material-ui "withStyles"
 const styles = theme => ({
@@ -38,25 +38,25 @@ class Index extends Component {
 
     const InvestorBtn =  withRouter(({ history }) => (
       <Button color="inherit" 
-        onClick={() => { history.push('/investor') }}
+        onClick={() => { history.push('/staker') }}
       >
         Staker
       </Button>
     ));
 
-    const AboutBtn =  withRouter(({ history }) => (
+    const VoteBtn =  withRouter(({ history }) => (
       <Button color="inherit" 
-        onClick={() => { history.push('/about') }}
+        onClick={() => { history.push('/vote') }}
       >
-        About
+        Vote
       </Button>
     ));
 
-    const LoginBtn =  withRouter(({ history }) => (
+    const TradeBtn =  withRouter(({ history }) => (
       <Button color="inherit" 
-        onClick={() => { history.push('/login') }}
+        onClick={() => { history.push('/trade') }}
       >
-        Login
+        Trade
       </Button>
     ));
 
@@ -69,16 +69,16 @@ class Index extends Component {
                 LiquiDAO
               </Typography>
               <HomeBtn />
-              <InvestorBtn />
               <Button color="inherit">Deposit</Button>
-              <AboutBtn />
-              <LoginBtn />
+              <VoteBtn />
+              <TradeBtn />
+              <InvestorBtn />
             </Toolbar>
           </AppBar>
           <Route path="/" exact component={Home} />
-          <Route path="/investor/" component={Investor} />
-          <Route path="/about/" component={About} />
-          <Route path="/login/" component={Login} />
+          <Route path="/staker/" component={Investor} />
+          <Route path="/vote/" component={Vote} />
+          <Route path="/trade/" component={Trade} />
         </div>
       </Router>
     );
