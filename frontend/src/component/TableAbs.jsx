@@ -12,13 +12,13 @@ function TableAbs(props) {
     <Table>
       <TableHead>
         <TableRow>
-          {heading.map(item => <TableCell>{item}</TableCell>)}
+          {heading.map((item, index) => <TableCell key={index}>{item}</TableCell>)}
         </TableRow>
       </TableHead>
       <TableBody>
-        {body.map(row => {
+        {body.map((row, index) => {
           return (
-            <TableRow>
+            <TableRow key={index}>
               {row.map((col, i) =>
               <TableCell key={i}>
                 {col}

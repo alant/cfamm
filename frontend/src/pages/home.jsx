@@ -71,12 +71,17 @@ class Home extends Component {
             <Typography variant="title" gutterBottom>
               New Proposals
             </Typography>
-            <TableAbs heading={heading} body={bodyNew}/>
+            <Paper>
+              <TableAbs heading={heading} body={bodyNew}/>
+            </Paper>
+
             <br />
             <Typography variant="title" gutterBottom>
               Most Popular Proposals
             </Typography>
-            <TableAbs heading={heading} body={bodyPop}/>
+            <Paper>
+              <TableAbs heading={heading} body={bodyPop}/>
+            </Paper>
 
           </Grid>
           <Grid item xs={4}>

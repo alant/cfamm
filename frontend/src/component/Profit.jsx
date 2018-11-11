@@ -2,17 +2,9 @@ import React, { Component } from 'react';
 
 // material-ui dependencies
 import { withStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
-import Button from '@material-ui/core/Button';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-
 
 import TotalProfit from './TotalProfit';
 import Issued from './Issued';
@@ -54,7 +46,6 @@ class Index extends Component {
             textColor="primary"
             scrollable
             scrollButtons="auto"
-            centered
           >
             <Tab label="ISSUED" />
             <Tab label="STAKED" />
@@ -62,9 +53,9 @@ class Index extends Component {
           </Tabs>
 
           <div>
-            {value == 0 && <Issued />}
-            {value == 1 && <Staked />}
-            {value == 2 && <Tokens />}
+            {value === 0 && <Issued />}
+            {value === 1 && <Staked />}
+            {value === 2 && <Tokens />}
           </div>
         </Paper>
       </div>
