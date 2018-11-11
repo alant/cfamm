@@ -63,15 +63,15 @@ class Home extends Component {
 
     const heading = ["Maturity", "Contract Name", "Open Interest", "Funding Progress to List", "Action"];
     const bodyNew = [
-      ["28 days", "Contract Name", "$902,219,309.99", "87%", stackButton],
-      ["28 days", "Contract Name", "$902,219,309.99", "87%", stackButton],
-      ["28 days", "Contract Name", "$902,219,309.99", "87%", stackButton],
-      ["28 days", "Contract Name", "$902,219,309.99", "87%", stackButton],
+      ["28 days", "FA", "$902,219,309.99", "87%", stackButton],
+      ["28 days", "FB", "$902,219,309.99", "87%", stackButton],
+      ["28 days", "FC", "$902,219,309.99", "87%", stackButton],
+      ["28 days", "FD", "$902,219,309.99", "87%", stackButton],
     ];
     const bodyPop = [
-      ["28 days", "Contract Name", "$902,219,309.99", "87%", stackButton],
-      ["28 days", "Contract Name", "$902,219,309.99", "87%", stackButton],
-      ["28 days", "Contract Name", "$902,219,309.99", "87%", stackButton],
+      ["28 days", "FC", "$902,219,309.99", "87%", stackButton],
+      ["28 days", "FA", "$902,219,309.99", "87%", stackButton],
+      ["28 days", "FD", "$902,219,309.99", "87%", stackButton],
     ];
 
     return (
@@ -95,7 +95,7 @@ class Home extends Component {
 
           </Grid>
           <Grid item xs={4}>
-            <Profit />
+            <Profit profit={this.props.profit}/>
           </Grid>
         </Grid>
         <StakeDialog open={open} handleClose={this.handleClose} />

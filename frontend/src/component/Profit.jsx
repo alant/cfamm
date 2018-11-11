@@ -35,6 +35,7 @@ class Index extends Component {
   render() {
     const { classes } = this.props;
     const { value } = this.state;
+
     return (
       <div className={classes.root}>
         <Paper className={classes.root}>
@@ -47,15 +48,15 @@ class Index extends Component {
             scrollable
             scrollButtons="auto"
           >
-            <Tab label="ISSUED" />
+            <Tab label="PROPOSALS" />
             <Tab label="STAKED" />
             <Tab label="TOKENS" />
           </Tabs>
 
           <div>
-            {value === 0 && <Issued />}
-            {value === 1 && <Staked />}
-            {value === 2 && <Tokens />}
+            {value === 0 && <Issued profit={this.props.profit.issued}/>}
+            {value === 1 && <Staked profit={this.props.profit.staked}/>}
+            {value === 2 && <Tokens profit={this.props.profit.tokens}/>}
           </div>
         </Paper>
       </div>

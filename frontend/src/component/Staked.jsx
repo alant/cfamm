@@ -3,13 +3,7 @@ import TableAbs from './TableAbs';
 import Typography from '@material-ui/core/Typography';
 
 function Staked(props) {
-  const headAcc = ["Name", "% Share of Contract", "Total Dividend Return"];
-  const bodyAcc = [
-    ["Contract Name", "15%", "+$0.99"],
-    ["Contract Name", "15%", "+$0.99"],
-    ["Contract Name", "15%", "+$0.99"],
-    ["Contract Name", "15%", "+$0.99"],
-  ];
+  const {headAcc, bodyAcc} = props.profit;
 
   return (
     <div>

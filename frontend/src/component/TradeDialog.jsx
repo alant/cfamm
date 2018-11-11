@@ -8,7 +8,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
 
 function StakeDialog(props) {
-  const {open, handleClose, buy, code} = props;
+  const {open, handleClose, buy, code, handleTrade} = props;
   return (
     <Dialog
       open={open}
@@ -35,7 +35,7 @@ function StakeDialog(props) {
         <Button onClick={handleClose} color="primary">
           Cancel
         </Button>
-        <Button onClick={handleClose} color="primary" autoFocus>
+        <Button onClick={handleTrade} color="primary" autoFocus>
           Submit
         </Button>
       </DialogActions>

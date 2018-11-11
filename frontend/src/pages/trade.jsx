@@ -70,11 +70,11 @@ class Trade extends Component {
 
     const heading = ["Name", "24H CHANGE", "PRICE BITUSD", "24H VOLUME", "LIQUIDITY DEPTH", "ACTION"];
     const body = [
-      ["ZIPT", "-5.91", "$0.004751", "$1,210", "$18,762", this.renderButtons("ZIPT")],
-      ["AAA", "-5.91", "$0.004751", "$1,210", "$18,762", this.renderButtons("AAA")],
-      ["BBB", "-5.91", "$0.004751", "$1,210", "$18,762", this.renderButtons("BBB")],
-      ["CCC", "-5.91", "$0.004751", "$1,210", "$18,762", this.renderButtons("CCC")],
-      ["DDD", "-5.91", "$0.004751", "$1,210", "$18,762", this.renderButtons("DDD")],
+      ["TA", "-5.91%", "$0.004751", "$1,210", "$18,762", this.renderButtons("TA")],
+      ["TB", "1.23%", "$0.004751", "$1,210", "$18,762", this.renderButtons("TB")],
+      ["TC", "-2.56%", "$0.004751", "$1,210", "$18,762", this.renderButtons("TC")],
+      ["TD", "-1.09%", "$0.004751", "$1,210", "$18,762", this.renderButtons("TD")],
+      ["TE", "3.01%", "$0.004751", "$1,210", "$18,762", this.renderButtons("TE")],
     ]
 
     return (
@@ -82,7 +82,7 @@ class Trade extends Component {
         <Paper>
           <TableAbs heading={heading} body={body}/>
         </Paper>
-        <TradeDialog open={open} buy={buy} code={code} handleClose={this.handleClose}/>
+        <TradeDialog open={open} buy={buy} code={code} handleClose={this.handleClose} handleTrade={this.props.onBuy}/>
       </div>
     )
   }

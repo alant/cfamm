@@ -20,16 +20,20 @@ const styles = {
 
 function Tokens(props) {
   const {classes} = props;
+  var {tokens} = props.profit;
 
-  const tokens = [
-    ["9999", "Token Name", "Contract Name"],
-    ["9999", "Token Name", "Contract Name"],
-    ["9999", "Token Name", "Contract Name"],
-    ["9999", "Token Name", "Contract Name"],
-  ]
+  // console.log("tokens", tokens);
+  // // const tokens = props.profit;
+  //
+  // tokens = [
+  //   ["9999", "Token Name", "Contract Name"],
+  //   ["9999", "Token Name", "Contract Name"],
+  //   ["9999", "Token Name", "Contract Name"],
+  //   ["9999", "Token Name", "Contract Name"],
+  // ]
 
-  function renderCard(item) {
-    return (<Card className={classes.card}>
+  function renderCard(item, i) {
+    return (<Card className={classes.card} key={i}>
       <CardContent>
         <Typography className={classes.title} color="textSecondary" gutterBottom>
           {item[0]}
@@ -49,7 +53,7 @@ function Tokens(props) {
 
   return (
     <div>
-      {tokens.map(item => renderCard(item))}
+      {tokens.map((item, i) => renderCard(item, i))}
     </div>
   )
 }

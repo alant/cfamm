@@ -3,18 +3,7 @@ import TableAbs from './TableAbs';
 import Typography from '@material-ui/core/Typography';
 
 function Issued(props) {
-  const headAcc = ["Name", "% Share of Contract", "Total Dividend Return"];
-  const bodyAcc = [
-    ["Contract Name", "15%", "+$0.99"],
-    ["Contract Name", "15%", "+$0.99"],
-    ["Contract Name", "15%", "+$0.99"],
-    ["Contract Name", "15%", "+$0.99"],
-  ];
-  const headUn = ["Name"];
-  const bodyUn = [
-    ["Contract Name"],
-    ["Contract Name"],
-  ]
+  const {headAcc, bodyAcc, headUn, bodyUn} = props.profit;
 
   return (
     <div>

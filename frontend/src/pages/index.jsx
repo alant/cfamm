@@ -25,6 +25,67 @@ const styles = theme => ({
 
 // Index component
 class Index extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      profit: {
+        issued: {
+          headAcc: ["Name", "% Share of Contract", "Total Dividend Return"],
+          bodyAcc: [
+            ["TA", "15%", "+$0.99"],
+            ["TB", "15%", "+$0.99"],
+            ["TC", "15%", "+$0.99"],
+            ["TD", "15%", "+$0.99"],
+          ],
+          headUn: ["Name"],
+          bodyUn: [
+            ["TX"],
+            ["TY"],
+          ]
+        },
+        staked: {
+          headAcc: ["Name", "% Share of Contract", "Total Return"],
+          bodyAcc: [
+            ["FA", "15%", "+$0.99"],
+            ["FB", "15%", "+$0.99"],
+            ["FC", "15%", "+$0.99"],
+            ["FD", "15%", "+$0.99"],
+            ["TA", "15%", "+$0.99"],
+            ["TB", "15%", "+$0.99"],
+          ],
+        },
+        tokens: {
+          tokens: [
+            ["9999", "TA", "Contract Name"],
+            ["9999", "TB", "Contract Name"],
+          ]
+        }
+      }
+    }
+  }
+
+  onBuy = () => {
+
+    // console.log("onBuy");
+
+    this.setState((prevState) => {
+      const {profit} = prevState;
+      var gain = profit.issued.bodyAcc[0][2].slice(2)
+      gain = parseFloat(gain) + 0.5;
+      gain = "+$" + gain;
+      profit.issued.bodyAcc[0][2] = gain;
+
+      return({
+        profit
+      })
+    })
+  }
+
+  onSell = () => {
+
+  }
+
+
 
   render() {
     const { classes } = this.props;
@@ -84,11 +145,11 @@ class Index extends Component {
               <InvestorBtn />
             </Toolbar>
           </AppBar>
-          <Route path="/" exact component={Home} />
+          <Route path="/" exact render={() => <Home profit={this.state.profit} />} />
           <Route path="/staker/" component={Investor} />
           <Route path="/deposit/" component={Deposit} />
           <Route path="/vote/" component={Vote} />
-          <Route path="/trade/" component={Trade} />
+          <Route path="/trade/" render={() => <Trade onBuy={this.onBuy} />}/>
         </div>
       </Router>
     );
