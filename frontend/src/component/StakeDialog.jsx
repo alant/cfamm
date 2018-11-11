@@ -52,7 +52,7 @@ class StakeDialog extends Component {
       </Dialog>
     )
   }
-  
+
 }
 
 StakeDialog.propTypes = {
