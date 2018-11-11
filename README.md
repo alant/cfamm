@@ -1,4 +1,7 @@
 # Overview
+./scripts/deploy_contract.sh makerdao1 notechainacc notechainwal $(cat notechain_wallet_password.txt)
+
+
 NoteChain demonstrates the eosio platform running a blockchain as a local single node test net with a simple DApp, NoteChain. NoteChain allows users to create and update notes. This guide uses scripts, containing relevant commands, which will show you how to install, build and run NoteChain, and by doing so will demonstrate:
 
 - Downloading and running eosio in docker;
@@ -241,6 +244,7 @@ docker run --rm --name eosio_notechain_container \
 --mount type=bind,src="$(pwd)"/data,dst=/mnt/dev/data \
 -w "/opt/eosio/bin/" eosio/eos-dev:v1.4.2 /bin/bash -c "./scripts/init_blockchain.sh"
 ```
+
 
 Output and follow docker console logs:
 ```sh
