@@ -14,6 +14,7 @@ import Home from './home';
 import Investor from './investor';
 import Vote from './vote';
 import Trade from './trade';
+import Deposit from './deposit';
 
 // set up styling classes using material-ui "withStyles"
 const styles = theme => ({
@@ -29,15 +30,23 @@ class Index extends Component {
     const { classes } = this.props;
 
     const HomeBtn =  withRouter(({ history }) => (
-      <Button color="inherit" 
+      <Button color="inherit"
         onClick={() => { history.push('/') }}
       >
         Home
       </Button>
     ));
 
+    const DepositBtn =  withRouter(({ history }) => (
+      <Button color="inherit"
+        onClick={() => { history.push('/deposit') }}
+      >
+        Deposit
+      </Button>
+    ));
+
     const InvestorBtn =  withRouter(({ history }) => (
-      <Button color="inherit" 
+      <Button color="inherit"
         onClick={() => { history.push('/staker') }}
       >
         Staker
@@ -45,7 +54,7 @@ class Index extends Component {
     ));
 
     const VoteBtn =  withRouter(({ history }) => (
-      <Button color="inherit" 
+      <Button color="inherit"
         onClick={() => { history.push('/vote') }}
       >
         Vote
@@ -53,7 +62,7 @@ class Index extends Component {
     ));
 
     const TradeBtn =  withRouter(({ history }) => (
-      <Button color="inherit" 
+      <Button color="inherit"
         onClick={() => { history.push('/trade') }}
       >
         Trade
@@ -69,7 +78,7 @@ class Index extends Component {
                 LiquiDAO
               </Typography>
               <HomeBtn />
-              <Button color="inherit">Deposit</Button>
+              <DepositBtn />
               {/* <VoteBtn /> */}
               <TradeBtn />
               <InvestorBtn />
@@ -77,6 +86,7 @@ class Index extends Component {
           </AppBar>
           <Route path="/" exact component={Home} />
           <Route path="/staker/" component={Investor} />
+          <Route path="/deposit/" component={Deposit} />
           <Route path="/vote/" component={Vote} />
           <Route path="/trade/" component={Trade} />
         </div>
