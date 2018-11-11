@@ -200,6 +200,7 @@ class Index extends Component {
 
     return (
       <div>
+        <h3>Total dividents for this contract: {this.state.total_dividents} EOS</h3>
         <h3>Staked token</h3>
         {noteCards}
         <Divider />
