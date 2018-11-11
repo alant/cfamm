@@ -9,6 +9,8 @@ import Button from '@material-ui/core/Button';
 import TableAbs from '../component/TableAbs';
 import Profit from '../component/Profit';
 import StakeDialog from '../component/StakeDialog';
+import ProposalDialog from '../component/NewProposal';
+import AddIcon from '@material-ui/icons/Add';
 
 const styles = theme => ({
   mainFeaturedPost: {
@@ -32,6 +34,7 @@ class Home extends Component {
     super(props);
     this.state = {
       open: false,
+      pDialogopen: false
     }
   }
 
@@ -39,13 +42,20 @@ class Home extends Component {
     this.setState({ open: true });
   };
 
+  handleClickPDialogOpen = () => {
+    this.setState({ pDialogopen: true });
+  };
+
   handleClose = () => {
     this.setState({ open: false });
+  };
+  handlePDialogClose = () => {
+    this.setState({ pDialogopen: false });
   };
 
   render() {
     const { classes } = this.props;
-    const { open } = this.state;
+    const { open, pDialogopen } = this.state;
 
     const stackButton = <Button variant="contained" color="primary" onClick={this.handleClickOpen}>
         Stake
@@ -89,6 +99,10 @@ class Home extends Component {
           </Grid>
         </Grid>
         <StakeDialog open={open} handleClose={this.handleClose} />
+        <ProposalDialog open={pDialogopen} handleClose={this.handlePDialogClose} />
+        <Button variant="fab" color="primary" aria-label="Add" className={classes.button} onClick={this.handleClickPDialogOpen}>
+          <AddIcon />
+        </Button>
       </div>
     )
   }
